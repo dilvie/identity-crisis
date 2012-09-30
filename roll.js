@@ -1,5 +1,5 @@
-var arr = [], i = 0;
-for (; i < 6; i++) {
+var arr = [], i;
+for (i = 0; i < 6; i++) {
   arr.push(Math.ceil(Math.random() * 6));
 }
 
