@@ -18,13 +18,14 @@ function rollDie () {
   return Math.ceil(Math.random() * Math.pow(2, 122));
 }
 
-function rollTest() {
+function rollTest(silent) {
   var log = {},
     rolls = 0,
     roll,
     collision = false,
     start = new Date(),
     finish,
+    results,
     limit = 1000000;
 
   while (collision === false && rolls < limit) {
@@ -38,18 +39,23 @@ function rollTest() {
   }
 
   finish = new Date();
+  results = {
+    time: (finish - start).toString() + 'ms',
+    rolls: rolls
+  };
 
-  if (collision) {
+  if (silent === 'silent') {
+    return results;
+  } else if (collision) {
     // Theoretically so rare as to be practically impossible...
     // But it happens all the time in V8.
     console.log('Collision detected after ' +
-      (finish - start).toString() + 'ms, ' + rolls + ' ids.');
+      results.time + ', ' + rolls + ' ids.');
+    return results;
   } else {
     console.log('Limit reach. No collisions detected.');
+    return 'Limit reached';
   }
-
-  return rolls;
 }
 
 rollTest();
-
