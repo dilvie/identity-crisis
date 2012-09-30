@@ -10,7 +10,7 @@ function rollTest() {
     collision = false,
     start = new Date(),
     finish,
-    limit = 100000000;
+    limit = 1000000;
 
   while (collision === false && rolls < limit) {
     roll = rollDie();
