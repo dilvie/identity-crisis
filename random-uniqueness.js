@@ -12,7 +12,7 @@ function rollTest() {
     finish,
     limit = 100000000;
 
-  while (collision === false) {
+  while (collision === false && rolls < limit) {
     roll = rollDie();
     if (!log[roll]) {
       log[roll] = true;
@@ -21,8 +21,15 @@ function rollTest() {
     }
     rolls++;
   }
+
   finish = new Date();
-  console.log('Collision detected after ' + (finish - start).toString() + 'ms, ' + rolls + ' ids.');
+
+  if (collision) {
+    console.log('Collision detected after ' + (finish - start).toString() + 'ms, ' + rolls + ' ids.');
+  } else {
+    console.log('Limit reach. No collisions detected.');
+  }
+
   return rolls;
 }
 
