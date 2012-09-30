@@ -7,7 +7,10 @@ function rollTest() {
   var log = {},
     rolls = 0,
     roll,
-    collision = false;
+    collision = false,
+    start = new Date(),
+    finish,
+    limit = 100000000;
 
   while (collision === false) {
     roll = rollDie();
@@ -18,12 +21,10 @@ function rollTest() {
     }
     rolls++;
   }
+  finish = new Date();
+  console.log('Collision detected after ' + (finish - start).toString() + 'ms, ' + rolls + ' ids.');
   return rolls;
 }
 
-// Time the collision.
-var d1 = new Date();
-var times = rollTest();
-var d2 = new Date();
+rollTest();
 
-console.log('Collision detected after ' + (d2 - d1).toString() + 'ms, ' + times + ' ids.');
